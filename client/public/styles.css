@@ -1,0 +1,119 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+html {
+	font-family: "Montserrat", sans-serif;
+}
+body {
+	background: #eee;
+	padding: 0 16px;
+}
+
+header {
+	background-color: #f5ba13;
+	margin: auto -16px;
+	padding: 16px 32px;
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+	color: #fff;
+	font-family: "McLaren", cursive;
+	font-weight: 200;
+}
+
+.main-content {
+	padding-bottom: 2.5rem;
+	background: blue;
+}
+
+footer {
+	position: absolute;
+	text-align: center;
+	bottom: 0;
+	width: 100%;
+	height: 2.5rem;
+}
+
+footer p {
+	color: #ccc;
+}
+
+.note {
+	background: #fff;
+	border-radius: 7px;
+	box-shadow: 0 2px 5px #ccc;
+	padding: 10px;
+	width: 240px;
+	margin: 16px;
+	float: left;
+}
+.note h1 {
+	font-size: 1.1em;
+	margin-bottom: 6px;
+}
+.note p {
+	font-size: 1.1em;
+	margin-bottom: 10px;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.create-note-container {
+	width: 100%;
+	margin: 30px auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+form {
+	width: 500px;
+	max-width: 90%;
+	background: #fff;
+	border-radius: 15px;
+	box-shadow: 1px 1px 7px #ccc;
+}
+
+form input,
+textarea {
+	width: 100%;
+	border: none;
+	outline: none;
+	margin-top: 15px;
+	padding: 5px 15px;
+	font-family: "Montserrat", sans-serif;
+	font-size: 1.1em;
+	resize: none;
+}
+
+.add-button {
+	height: 40px;
+	width: 40px;
+	position: relative;
+	float: right;
+	transform: translate(-30px, 10px);
+	border-radius: 50%;
+	border: none;
+	background-color: #f5ba13;
+	color: white;
+	margin: -10px;
+	cursor: pointer;
+	font-family: "Montserrat", sans-serif;
+}
+
+.delete-button {
+	position: relative;
+	float: right;
+	border-radius: 5px;
+	border: none;
+	background-color: #eaeaea;
+	color: #f5ba13;
+	padding: 10px;
+	margin: 10px;
+	cursor: pointer;
+	font-family: "Montserrat", sans-serif;
+}
