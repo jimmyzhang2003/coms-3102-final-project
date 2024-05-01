@@ -93,9 +93,22 @@ function App() {
 			});
 	};
 
+	// to clear all notes, pass callback as prop to header
+	const clearAllNotes = () => {
+		axios
+			.delete("http://localhost:3001/notes/")
+			.then((res) => {
+				console.log("Cleared all notes");
+				setNotes([]);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	};
+
 	return (
 		<div>
-			<Header />
+			<Header onClear={clearAllNotes} />
 			<CreateNote onCreate={createNote} />
 			{notes &&
 				// pass the index in the notes array as the id

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { MdOutlineDone } from "react-icons/md";
 
 function Note(props) {
 	const [note, setNote] = useState({
@@ -62,7 +64,7 @@ function Note(props) {
 					{showWarning && <p>Title and content fields cannot be empty</p>}
 
 					<button type="submit" className="add-button">
-						SAVE
+						<MdOutlineDone />
 					</button>
 				</form>
 			) : (
@@ -74,13 +76,13 @@ function Note(props) {
 							setEditMode(true);
 						}}
 					>
-						EDIT
+						<FaEdit />
 					</button>
 					<button
 						className="delete-button"
 						onClick={() => props.onDelete(props.id)}
 					>
-						DELETE
+						<FaTrashAlt />
 					</button>
 				</div>
 			)}

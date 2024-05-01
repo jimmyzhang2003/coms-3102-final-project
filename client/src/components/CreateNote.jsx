@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { IoIosAdd } from "react-icons/io";
 
 function CreateNote(props) {
 	const [note, setNote] = useState({
@@ -65,7 +66,7 @@ function CreateNote(props) {
 				{showWarning && <p>Title and content fields cannot be empty</p>}
 
 				<button type="submit" className="add-button">
-					Add
+					<IoIosAdd />
 				</button>
 			</form>
 		</div>
