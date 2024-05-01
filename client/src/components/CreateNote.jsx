@@ -6,6 +6,8 @@ function CreateNote(props) {
 		content: "",
 	});
 
+	const [showWarning, setShowWarning] = useState(false);
+
 	// update note state upon editing title or content
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -21,14 +23,24 @@ function CreateNote(props) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		// add current note to notes array
-		props.onCreate(note);
+		// if either title or content is empty, show a message and do not create new note
+		if (note.title === "" || note.content === "") {
+			setShowWarning(true);
 
-		// after rendering current note, clear input and textfield
-		setNote({
-			title: "",
-			content: "",
-		});
+			// make warning disappear after 3 seconds
+			setTimeout(() => {
+				setShowWarning(false);
+			}, 3000);
+		} else {
+			// add current note to notes array
+			props.onCreate(note);
+
+			// after rendering current note, clear input and textfield
+			setNote({
+				title: "",
+				content: "",
+			});
+		}
 	};
 
 	return (
@@ -49,6 +61,9 @@ function CreateNote(props) {
 					value={note.content}
 					onChange={handleChange}
 				/>
+
+				{showWarning && <p>Title and content fields cannot be empty</p>}
+
 				<button type="submit" className="add-button">
 					Add
 				</button>

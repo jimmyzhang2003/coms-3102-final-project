@@ -24,11 +24,8 @@ async function connect() {
 }
 connect();
 
+// have server listen on port 3001
 const SERVER_PORT = process.env.port || 3001;
-
-app.get("/api", (req, res) => {
-	res.json({ message: "Hello World!" });
-});
 
 app.listen(SERVER_PORT, () => {
 	console.log(`Listening on port ${SERVER_PORT}`);

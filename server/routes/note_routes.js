@@ -32,10 +32,7 @@ router.post("/", (req, res) => {
 		.save()
 		.then((result) => {
 			console.log(result);
-			res.status(201).json({
-				message: "Note created",
-				createdNote: result,
-			});
+			res.status(201).json(result);
 		})
 		.catch((err) => {
 			console.error(err);
@@ -59,16 +56,29 @@ router.patch("/:id", (req, res) => {
 		});
 });
 
-// DELETE endpoint
+// DELETE (single) endpoint
 router.delete("/:id", (req, res) => {
+	const id = req.params.id;
+
 	Note.deleteOne({ _id: id })
 		.exec()
 		.then((result) => {
-			console.log("Note deleted");
-			res.status(200).json({
-				message: "Note deleted",
-				deletedNote: result,
-			});
+			console.log(`Note deleted with id ${id}`);
+			res.status(200).json(result);
+		})
+		.catch((err) => {
+			console.error(err);
+			res.status(500).json({ error: err });
+		});
+});
+
+// DELETE (all) endpoint
+router.delete("/", (req, res) => {
+	Note.deleteMany({})
+		.exec()
+		.then((results) => {
+			console.log("All notes deleted");
+			res.status(200).json(results);
 		})
 		.catch((err) => {
 			console.error(err);
