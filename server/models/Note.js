@@ -11,9 +11,18 @@ const noteSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	dateCreated: { type: Date, default: Date.now() },
-	starred: Boolean,
-	priority: Number,
+	dateCreated: {
+		type: Date,
+		default: Date.now(),
+	},
+	dateModified: {
+		type: Date,
+		default: Date.now(),
+	},
+	starred: {
+		type: Boolean,
+		default: false,
+	},
 });
 
 module.exports = mongoose.model("Note", noteSchema);

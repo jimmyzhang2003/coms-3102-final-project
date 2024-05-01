@@ -13,7 +13,7 @@ function App() {
 		axios
 			.get("http://localhost:3001/notes")
 			.then((res) => {
-				console.log("Retrieved all notes" + res.data);
+				console.log("Retrieved all notes");
 				setNotes(res.data);
 			})
 			.catch((err) => {
@@ -29,7 +29,7 @@ function App() {
 				content: newNote.content,
 			})
 			.then((res) => {
-				console.log("Created new note" + res.data);
+				console.log("Created new note");
 				setNotes((prevNotes) => {
 					return [...prevNotes, res.data];
 				});
@@ -44,9 +44,48 @@ function App() {
 		axios
 			.delete(`http://localhost:3001/notes/${id}`)
 			.then((res) => {
-				console.log("Deleted note" + res.data);
+				console.log("Deleted note");
 				setNotes((prevNotes) => {
 					return prevNotes.filter((note) => note._id !== id);
+				});
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	};
+
+	// to edit note, pass callback as prop to Note
+	const editNote = (id, updatedNote) => {
+		let existingNote = notes.find((note) => note._id === id);
+
+		// if nothing changed, do not send patch request
+		if (
+			existingNote &&
+			existingNote.title === updatedNote.title &&
+			existingNote.content === updatedNote.content
+		) {
+			console.log("Edits cancelled");
+			return;
+		}
+
+		axios
+			.patch(`http://localhost:3001/notes/${id}`, {
+				title: updatedNote.title,
+				content: updatedNote.content,
+				dateModified: Date.now(),
+			})
+			.then((res) => {
+				console.log("Updated note");
+				setNotes((prevNotes) => {
+					return prevNotes.map((note) => {
+						return note._id === id
+							? {
+									_id: note._id,
+									title: updatedNote.title,
+									content: updatedNote.content,
+							  }
+							: note;
+					});
 				});
 			})
 			.catch((err) => {
@@ -67,6 +106,7 @@ function App() {
 						title={note.title}
 						content={note.content}
 						onDelete={deleteNote}
+						onEdit={editNote}
 					/>
 				))}
 			<Footer />

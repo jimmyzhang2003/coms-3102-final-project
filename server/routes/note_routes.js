@@ -25,7 +25,6 @@ router.post("/", (req, res) => {
 		title: req.body.title,
 		content: req.body.content,
 		starred: req.body.starred,
-		priority: req.body.priority,
 	});
 
 	note
