@@ -24,7 +24,6 @@ router.post("/", (req, res) => {
 		_id: new mongoose.Types.ObjectId(),
 		title: req.body.title,
 		content: req.body.content,
-		starred: req.body.starred,
 	});
 
 	note

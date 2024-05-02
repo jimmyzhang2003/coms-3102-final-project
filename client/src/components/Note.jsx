@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import moment from "moment";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import { MdOutlineDone } from "react-icons/md";
+import { MdOutlineDone, MdCancel } from "react-icons/md";
 
 function Note(props) {
 	const [note, setNote] = useState({
 		id: props.id,
 		title: props.title,
 		content: props.content,
-		// dateCreated: props.dateCreated,
-		// dateModified: props.dateModified,
 		dateCreated: moment(new Date(props.dateCreated)).format(
 			"M/D/YYYY, h:mm:ssa"
 		),
@@ -18,18 +16,19 @@ function Note(props) {
 		),
 	});
 
+	const [editedTitle, setEditedTitle] = useState(props.title);
+	const [editedContent, setEditedContent] = useState(props.content);
 	const [editMode, setEditMode] = useState(false);
 	const [showWarning, setShowWarning] = useState(false);
 
 	// update note state upon editing title or content
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-		setNote((prevNote) => {
-			return {
-				...prevNote,
-				[name]: value,
-			};
-		});
+		if (name === "title") {
+			setEditedTitle(value);
+		} else if (name === "content") {
+			setEditedContent(value);
+		}
 	};
 
 	// to handle submitted edits
@@ -37,7 +36,7 @@ function Note(props) {
 		e.preventDefault();
 
 		// if either title or content is empty, show a message and do not create new note
-		if (note.title === "" || note.content === "") {
+		if (editedTitle === "" || editedContent === "") {
 			setShowWarning(true);
 
 			// make warning disappear after 3 seconds
@@ -48,8 +47,9 @@ function Note(props) {
 			setNote((prevNote) => {
 				return {
 					...prevNote,
+					title: editedTitle,
+					content: editedContent,
 					dateModified: moment(Date.now()).format("M/D/YYYY, h:mm:ssa"),
-					// dateModified: Date(),
 				};
 			});
 			props.onEdit(note.id, note);
@@ -65,7 +65,7 @@ function Note(props) {
 					<input
 						name="title"
 						placeholder="Title"
-						value={note.title}
+						value={editedTitle}
 						onChange={handleChange}
 					/>
 
@@ -73,37 +73,43 @@ function Note(props) {
 						name="content"
 						placeholder="Take a note..."
 						rows="3"
-						value={note.content}
+						value={editedContent}
 						onChange={handleChange}
 					/>
 
 					{showWarning && <p>Title and content fields cannot be empty</p>}
 
-					<button type="submit" className="add-button">
+					<button type="submit" className="save-button">
 						<MdOutlineDone />
+					</button>
+
+					<button
+						type="button"
+						className="cancel-button"
+						onClick={() => {
+							console.log("Edits cancelled");
+							setEditMode(false);
+						}}
+					>
+						<MdCancel />
 					</button>
 				</form>
 			) : (
 				<div>
 					<h1>{note.title}</h1>
 					<p className="note-content">{note.content}</p>
-					<div className="dates-container">
+					<div>
 						<p className="date">Created on: {note.dateCreated}</p>
 						<p className="date">Modified on: {note.dateModified}</p>
 					</div>
-
-					<button
-						onClick={() => {
-							setEditMode(true);
-						}}
-					>
-						<FaEdit />
-					</button>
 					<button
 						className="delete-button"
 						onClick={() => props.onDelete(props.id)}
 					>
 						<FaTrashAlt />
+					</button>
+					<button className="edit-button" onClick={() => setEditMode(true)}>
+						<FaEdit />
 					</button>
 				</div>
 			)}

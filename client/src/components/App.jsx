@@ -68,7 +68,7 @@ function App() {
 			existingNote.title === updatedNote.title &&
 			existingNote.content === updatedNote.content
 		) {
-			console.log("Edits cancelled");
+			console.log("Note unchanged");
 			return;
 		}
 
@@ -78,8 +78,6 @@ function App() {
 				content: updatedNote.content,
 				dateCreated: new Date(existingNote.dateCreated),
 				dateModified: new Date(),
-
-				// TODO: need to account for starred?
 			})
 			.then((res) => {
 				console.log("Updated note");
