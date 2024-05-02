@@ -63,7 +63,11 @@ function CreateNote(props) {
 					onChange={handleChange}
 				/>
 
-				{showWarning && <p>Title and content fields cannot be empty</p>}
+				{showWarning && (
+					<p className="warning-message">
+						Title and content fields cannot be empty
+					</p>
+				)}
 
 				<button type="submit" className="add-button">
 					<IoIosAdd size={28} />

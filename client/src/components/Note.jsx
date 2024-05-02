@@ -43,6 +43,11 @@ function Note(props) {
 			setTimeout(() => {
 				setShowWarning(false);
 			}, 3000);
+		}
+		// if note title and content unchanged, do nothing
+		else if (editedTitle === note.title && editedContent === note.content) {
+			console.log("Note unchanged");
+			setEditMode(false);
 		} else {
 			setNote((prevNote) => {
 				return {
@@ -55,6 +60,14 @@ function Note(props) {
 			props.onEdit(note.id, note);
 			setEditMode(false);
 		}
+	};
+
+	// discard edits when cancel button is clicked
+	const handleCancel = () => {
+		console.log("Edits cancelled");
+		setEditedTitle(note.title);
+		setEditedContent(note.content);
+		setEditMode(false);
 	};
 
 	return (
@@ -77,7 +90,11 @@ function Note(props) {
 						onChange={handleChange}
 					/>
 
-					{showWarning && <p>Title and content fields cannot be empty</p>}
+					{showWarning && (
+						<p className="warning-message">
+							Title and content fields cannot be empty
+						</p>
+					)}
 
 					<button type="submit" className="save-button">
 						<MdOutlineDone />
@@ -86,10 +103,7 @@ function Note(props) {
 					<button
 						type="button"
 						className="cancel-button"
-						onClick={() => {
-							console.log("Edits cancelled");
-							setEditMode(false);
-						}}
+						onClick={handleCancel}
 					>
 						<MdCancel />
 					</button>

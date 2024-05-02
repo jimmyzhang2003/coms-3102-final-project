@@ -162,3 +162,21 @@ textarea {
 	color: rgba(102, 102, 102, 0.6);
 	padding-block: 2px;
 }
+
+.warning-message {
+	width: 400px;
+	max-width: 75%;
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	background-color: #ffdddd;
+	color: #cc0000;
+	border: 1px solid #cc0000;
+	padding: 8px 12px;
+	border-radius: 4px;
+	text-align: center;
+	margin: auto;
+}

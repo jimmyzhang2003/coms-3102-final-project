@@ -62,16 +62,6 @@ function App() {
 			console.error(`Cannot find note with id ${id}`);
 		}
 
-		// if nothing changed, do not send patch request
-		if (
-			existingNote &&
-			existingNote.title === updatedNote.title &&
-			existingNote.content === updatedNote.content
-		) {
-			console.log("Note unchanged");
-			return;
-		}
-
 		axios
 			.patch(`http://localhost:3001/notes/${id}`, {
 				title: updatedNote.title,
