@@ -5,7 +5,7 @@ function Header(props) {
 		<header>
 			<h1>Note Keeper</h1>
 
-			<button className="clear-all-btn" onClick={() => props.onClear()}>
+			<button className="clear-all-button" onClick={() => props.onClear()}>
 				CLEAR ALL NOTES
 			</button>
 		</header>

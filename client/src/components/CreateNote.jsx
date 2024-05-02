@@ -66,7 +66,7 @@ function CreateNote(props) {
 				{showWarning && <p>Title and content fields cannot be empty</p>}
 
 				<button type="submit" className="add-button">
-					<IoIosAdd />
+					<IoIosAdd size={28} />
 				</button>
 			</form>
 		</div>

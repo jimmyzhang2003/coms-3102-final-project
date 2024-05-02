@@ -13,11 +13,11 @@ const noteSchema = new Schema({
 	},
 	dateCreated: {
 		type: Date,
-		default: Date.now(),
+		default: Date.now,
 	},
 	dateModified: {
 		type: Date,
-		default: Date.now(),
+		default: Date.now,
 	},
 	starred: {
 		type: Boolean,

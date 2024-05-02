@@ -58,6 +58,10 @@ function App() {
 	const editNote = (id, updatedNote) => {
 		let existingNote = notes.find((note) => note._id === id);
 
+		if (!existingNote) {
+			console.error(`Cannot find note with id ${id}`);
+		}
+
 		// if nothing changed, do not send patch request
 		if (
 			existingNote &&
@@ -72,7 +76,10 @@ function App() {
 			.patch(`http://localhost:3001/notes/${id}`, {
 				title: updatedNote.title,
 				content: updatedNote.content,
-				dateModified: Date.now(),
+				dateCreated: new Date(existingNote.dateCreated),
+				dateModified: new Date(),
+
+				// TODO: need to account for starred?
 			})
 			.then((res) => {
 				console.log("Updated note");
@@ -83,6 +90,8 @@ function App() {
 									_id: note._id,
 									title: updatedNote.title,
 									content: updatedNote.content,
+									dateCreated: updatedNote.dateCreated,
+									dateModified: updatedNote.dateModified,
 							  }
 							: note;
 					});
@@ -118,6 +127,8 @@ function App() {
 						key={note._id}
 						title={note.title}
 						content={note.content}
+						dateCreated={note.dateCreated}
+						dateModified={note.dateModified}
 						onDelete={deleteNote}
 						onEdit={editNote}
 					/>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import moment from "moment";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
 
@@ -7,6 +8,14 @@ function Note(props) {
 		id: props.id,
 		title: props.title,
 		content: props.content,
+		// dateCreated: props.dateCreated,
+		// dateModified: props.dateModified,
+		dateCreated: moment(new Date(props.dateCreated)).format(
+			"M/D/YYYY, h:mm:ssa"
+		),
+		dateModified: moment(new Date(props.dateModified)).format(
+			"M/D/YYYY, h:mm:ssa"
+		),
 	});
 
 	const [editMode, setEditMode] = useState(false);
@@ -36,6 +45,13 @@ function Note(props) {
 				setShowWarning(false);
 			}, 3000);
 		} else {
+			setNote((prevNote) => {
+				return {
+					...prevNote,
+					dateModified: moment(Date.now()).format("M/D/YYYY, h:mm:ssa"),
+					// dateModified: Date(),
+				};
+			});
 			props.onEdit(note.id, note);
 			setEditMode(false);
 		}
@@ -69,8 +85,13 @@ function Note(props) {
 				</form>
 			) : (
 				<div>
-					<h1>{props.title}</h1>
-					<p>{props.content}</p>
+					<h1>{note.title}</h1>
+					<p className="note-content">{note.content}</p>
+					<div className="dates-container">
+						<p className="date">Created on: {note.dateCreated}</p>
+						<p className="date">Modified on: {note.dateModified}</p>
+					</div>
+
 					<button
 						onClick={() => {
 							setEditMode(true);
