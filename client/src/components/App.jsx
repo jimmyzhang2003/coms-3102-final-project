@@ -6,16 +6,7 @@ import Note from "./Note";
 import CreateNote from "./CreateNote";
 
 function App() {
-	const [notes, setNotes] = useState([
-		{
-			_id: "6635240beea984248e9795f7",
-			title: "adsfas",
-			content: "fdsa",
-			dateCreated: "2024-05-03T17:51:07.495Z",
-			dateModified: "2024-05-03T17:51:13.011Z",
-			__v: 0,
-		},
-	]);
+	const [notes, setNotes] = useState([]);
 
 	// pull all existing notes from database on initial render
 	useEffect(() => {
@@ -118,7 +109,7 @@ function App() {
 			<CreateNote onCreate={createNote} />
 			{notes &&
 				// pass the index in the notes array as the id
-				notes.map((note) => (
+				notes?.map((note) => (
 					<Note
 						id={note._id}
 						key={note._id}
