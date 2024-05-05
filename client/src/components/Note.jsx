@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { MdOutlineDone, MdCancel } from "react-icons/md";
@@ -20,6 +20,17 @@ function Note(props) {
 	const [editedContent, setEditedContent] = useState(props.content);
 	const [editMode, setEditMode] = useState(false);
 	const [showWarning, setShowWarning] = useState(false);
+	const [isInitialRender, setIsInitialRender] = useState(true);
+
+	// send patch request after edits are confirmed, but do not send request on initial render
+	useEffect(() => {
+		if (isInitialRender) {
+			setIsInitialRender(false);
+		} else {
+			props.onEdit(note.id, note);
+			setEditMode(false);
+		}
+	}, [note]);
 
 	// update note state upon editing title or content
 	const handleChange = (e) => {
@@ -57,8 +68,6 @@ function Note(props) {
 					dateModified: moment(Date.now()).format("M/D/YYYY, h:mm:ssa"),
 				};
 			});
-			props.onEdit(note.id, note);
-			setEditMode(false);
 		}
 	};
 
