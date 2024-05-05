@@ -8,10 +8,16 @@ import CreateNote from "./CreateNote";
 function App() {
 	const [notes, setNotes] = useState([]);
 
+    const API_URL =
+        // use deployed backend in prod, otherwise use localhost
+		process.env.NODE_ENV === "production"
+			? "https://coms-3102-final-project-server.vercel.app"
+			: "http://localhost:3001";
+
 	// pull all existing notes from database on initial render
 	useEffect(() => {
 		axios
-			.get("https://coms-3102-final-project-server.vercel.app/api")
+			.get(`${API_URL}/api`)
 			.then((res) => {
 				console.log("Retrieved all notes");
 				console.log(res.data);
@@ -20,12 +26,12 @@ function App() {
 			.catch((err) => {
 				console.error(err);
 			});
-	}, []);
+	}, [API_URL]);
 
 	// to pass data from CreateNote to App, pass callback as prop to CreateNote
 	const createNote = (newNote) => {
 		axios
-			.post("/api", {
+			.post("api/", {
 				title: newNote.title,
 				content: newNote.content,
 			})
