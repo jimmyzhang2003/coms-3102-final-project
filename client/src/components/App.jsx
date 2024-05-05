@@ -11,7 +11,7 @@ function App() {
 	// pull all existing notes from database on initial render
 	useEffect(() => {
 		axios
-			.get("http://localhost:3001/notes")
+			.get("/api")
 			.then((res) => {
 				console.log("Retrieved all notes");
 				setNotes(res.data);
@@ -19,12 +19,12 @@ function App() {
 			.catch((err) => {
 				console.error(err);
 			});
-	}, []);
+	}, [API_PATH]);
 
 	// to pass data from CreateNote to App, pass callback as prop to CreateNote
 	const createNote = (newNote) => {
 		axios
-			.post("http://localhost:3001/notes", {
+			.post("/api", {
 				title: newNote.title,
 				content: newNote.content,
 			})
@@ -42,7 +42,7 @@ function App() {
 	// to delete note, pass callback as prop to Note
 	const deleteNote = (id) => {
 		axios
-			.delete(`http://localhost:3001/notes/${id}`)
+			.delete(`/api/${id}`)
 			.then((res) => {
 				console.log("Deleted note");
 				setNotes((prevNotes) => {
@@ -63,7 +63,7 @@ function App() {
 		}
 
 		axios
-			.patch(`http://localhost:3001/notes/${id}`, {
+			.patch(`/api/${id}`, {
 				title: updatedNote.title,
 				content: updatedNote.content,
 				dateCreated: new Date(existingNote.dateCreated),
@@ -93,7 +93,7 @@ function App() {
 	// to clear all notes, pass callback as prop to header
 	const clearAllNotes = () => {
 		axios
-			.delete("http://localhost:3001/notes/")
+			.delete("/api")
 			.then((res) => {
 				console.log("Cleared all notes");
 				setNotes([]);
