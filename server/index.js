@@ -11,7 +11,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use("/notes", noteRoutes);
+app.use("/api", noteRoutes);
 
 // connect to MongoDB
 async function connect() {
