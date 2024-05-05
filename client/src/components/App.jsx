@@ -108,6 +108,7 @@ function App() {
 			<Header onClear={clearAllNotes} />
 			<CreateNote onCreate={createNote} />
 			{notes &&
+				notes.length &&
 				// pass the index in the notes array as the id
 				notes.map((note) => (
 					<Note
