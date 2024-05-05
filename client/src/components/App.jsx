@@ -11,7 +11,7 @@ function App() {
 	// pull all existing notes from database on initial render
 	useEffect(() => {
 		axios
-			.get("/api")
+			.get("https://coms-3102-final-project-server.vercel.app/api")
 			.then((res) => {
 				console.log("Retrieved all notes");
 				console.log(res.data);
