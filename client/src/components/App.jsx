@@ -8,8 +8,8 @@ import CreateNote from "./CreateNote";
 function App() {
 	const [notes, setNotes] = useState([]);
 
-    const API_URL =
-        // use deployed backend in prod, otherwise use localhost
+	const API_URL =
+		// use deployed backend in prod, otherwise use localhost
 		process.env.NODE_ENV === "production"
 			? "https://coms-3102-final-project-server.vercel.app"
 			: "http://localhost:3001";
@@ -31,7 +31,7 @@ function App() {
 	// to pass data from CreateNote to App, pass callback as prop to CreateNote
 	const createNote = (newNote) => {
 		axios
-			.post("api/", {
+			.post(`${API_URL}/api`, {
 				title: newNote.title,
 				content: newNote.content,
 			})
@@ -49,7 +49,7 @@ function App() {
 	// to delete note, pass callback as prop to Note
 	const deleteNote = (id) => {
 		axios
-			.delete(`/api/${id}`)
+			.delete(`${API_URL}/api/${id}`)
 			.then((res) => {
 				console.log("Deleted note");
 				setNotes((prevNotes) => {
@@ -70,7 +70,7 @@ function App() {
 		}
 
 		axios
-			.patch(`/api/${id}`, {
+			.patch(`${API_URL}/api/${id}`, {
 				title: updatedNote.title,
 				content: updatedNote.content,
 				dateCreated: new Date(existingNote.dateCreated),
@@ -100,7 +100,7 @@ function App() {
 	// to clear all notes, pass callback as prop to header
 	const clearAllNotes = () => {
 		axios
-			.delete("/api")
+			.delete(`${API_URL}/api`)
 			.then((res) => {
 				console.log("Cleared all notes");
 				setNotes([]);
