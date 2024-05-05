@@ -6,7 +6,16 @@ import Note from "./Note";
 import CreateNote from "./CreateNote";
 
 function App() {
-	const [notes, setNotes] = useState();
+	const [notes, setNotes] = useState([
+		{
+			_id: "6635240beea984248e9795f7",
+			title: "adsfas",
+			content: "fdsa",
+			dateCreated: "2024-05-03T17:51:07.495Z",
+			dateModified: "2024-05-03T17:51:13.011Z",
+			__v: 0,
+		},
+	]);
 
 	// pull all existing notes from database on initial render
 	useEffect(() => {
