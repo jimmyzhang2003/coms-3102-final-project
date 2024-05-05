@@ -19,7 +19,7 @@ function App() {
 			.catch((err) => {
 				console.error(err);
 			});
-	}, [API_PATH]);
+	}, []);
 
 	// to pass data from CreateNote to App, pass callback as prop to CreateNote
 	const createNote = (newNote) => {
