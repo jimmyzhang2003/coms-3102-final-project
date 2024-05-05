@@ -14,6 +14,7 @@ function App() {
 			.get("/api")
 			.then((res) => {
 				console.log("Retrieved all notes");
+				console.log(res.data);
 				setNotes(res.data);
 			})
 			.catch((err) => {
