@@ -8,7 +8,7 @@ This app uses the MERN stack (MongoDB, Express, React, Node), and this repositor
 
 ## Deployment
 
-Currently, both the client and server are deployed using Vercel. The frontend code (and the main app) is deployed at https://coms-3102-final-project-client.vercel.app/, while the backend code is deployed at https://coms-3102-final-project-server.vercel.app/. To note, for the backend code, Vercel converted the Express.js routes to serverless functions.
+Currently, both the client and server are deployed using Vercel. The frontend code (and the main app) is deployed at https://coms-3102-final-project-client.vercel.app/, while the backend code is deployed at https://coms-3102-final-project-server.vercel.app/. To note, for the backend code, Vercel converts the Express routes into serverless functions.
 
 ## Preview
 
@@ -26,9 +26,9 @@ Here are the steps to work on this project locally:
 ### Setup
 
 1. Clone the repository
-
-   `git clone https://github.com/jimmyzhang2003/coms-3102-final-project.git`
-
+   ```
+   git clone https://github.com/jimmyzhang2003/coms-3102-final-project.git
+   ```
 2. Check that Node.js and npm are installed, and if not, follow the installation instructions at https://nodejs.org/en/download/package-manager
    ```
    node -v
@@ -39,31 +39,33 @@ Here are the steps to work on this project locally:
 ### Server
 
 1. Enter server directory
-
-   `cd server`
-
+   ```
+   cd server
+   ```
 2. Create a .env file and add "MONGO_DB_URI=<YOUR_MONGO_DB_CONNECTION_STRING>" to it
-
-   `touch .env`
-
+   ```
+   touch .env
+   ```
 3. Install dependencies
-
-   `npm install`
-
+   ```
+   npm install
+   ```
 4. Start the Node.js server application
-
-   `npm run start`
+   ```
+   npm run dev
+   ```
 
 ### Client
 
 1. Enter client directory
-
-   `cd client`
-
+   ```
+   cd client
+   ```
 2. Install dependencies
-
-   `npm install`
-
+   ```
+   npm install
+   ```
 3. Start the React.js client application
-
-   `npm run start`
+   ```
+   npm run start
+   ```
