@@ -6,50 +6,64 @@ This full-stack note taking application is the final project for COMS 3102 (Full
 
 This app uses the MERN stack (MongoDB, Express, React, Node), and this repository contains both the server-side and client-side for the app.
 
-### Deployment
+## Deployment
 
 Currently, both the client and server are deployed using Vercel. The frontend code (and the main app) is deployed at https://coms-3102-final-project-client.vercel.app/, while the backend code is deployed at https://coms-3102-final-project-server.vercel.app/. To note, for the backend code, Vercel converted the Express.js routes to serverless functions.
 
-### Preview
+## Preview
 
 <img src="client/public/app_preview.png" alt="App Preview">
 
-### Getting Started
+## Getting Started
 
 Here are the steps to work on this project locally:
 
-#### Prerequisites
+### Prerequisites
 
 - Node.js >= 18.0.0
 - npm >= 8.0.0
 
-#### Setup
+### Setup
 
 1. Clone the repository
+
    `git clone https://github.com/jimmyzhang2003/coms-3102-final-project.git`
-2. Check that Node.js and npm are installed
+
+2. Check that Node.js and npm are installed, and if not, follow the installation instructions at https://nodejs.org/en/download/package-manager
    ```
    node -v
    npm -v
    ```
-3. Create a new project in MongoDB and obtain a connection string.
+3. Create a new project in MongoDB and obtain a connection string
 
-#### Server
+### Server
 
 1. Enter server directory
+
    `cd server`
+
 2. Create a .env file and add "MONGO_DB_URI=<YOUR_MONGO_DB_CONNECTION_STRING>" to it
+
    `touch .env`
+
 3. Install dependencies
+
    `npm install`
+
 4. Start the Node.js server application
+
    `npm run start`
 
-#### Client
+### Client
 
 1. Enter client directory
+
    `cd client`
+
 2. Install dependencies
+
    `npm install`
+
 3. Start the React.js client application
+
    `npm run start`
