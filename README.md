@@ -4,7 +4,7 @@
 
 This full-stack note taking application is the final project for COMS 3102 (Full-Stack Web Development) at Columbia University. This app allows users to create, save, edit, and delete notes in a similar manner to Google Keep. Notes are retained between refreshes, but since authentication has not been implemented, all users share a single set of notes.
 
-This app uses the MERN stack (MongoDB, Express, React, Node), and this repository contains both the server-side and client-side for the app.
+This app uses the MERN stack (MongoDB, Express, React, Node), and this repository contains both the server-side and client-side code for the app.
 
 ## Deployment
 
